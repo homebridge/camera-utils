@@ -1,0 +1,12 @@
+build
+src
+test
+node_modules
+.idea
+.DS_Store
+.editorconfig
+.env
+.eslintrc.json
+.prettierrc
+jest.config.js
+tsconfig.json
