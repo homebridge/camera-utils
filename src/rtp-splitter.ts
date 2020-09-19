@@ -24,7 +24,7 @@ export class RtpSplitter {
   public readonly socket = createSocket('udp4')
   public readonly portPromise = bindToPort(this.socket)
   private onClose = new ReplaySubject<any>()
-  private onMessage = fromEvent<[Buffer, RemoteInfo]>(
+  public readonly onMessage = fromEvent<[Buffer, RemoteInfo]>(
     this.socket,
     'message'
   ).pipe(
