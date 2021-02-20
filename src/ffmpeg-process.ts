@@ -7,7 +7,6 @@ const noop = () => null,
 
 // register a single event listener, rather than listener per ffmpeg process
 // this helps avoid a warning for hitting too many listeners
-process.on('SIGINT', () => onGlobalProcessStopped.next())
 process.on('exit', () => onGlobalProcessStopped.next())
 
 export interface FfmpegProcessOptions {
