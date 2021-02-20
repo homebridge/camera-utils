@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0-beta.0](https://github.com/homebridge/camera-utils/compare/v1.2.0...v1.4.0-beta.0) (2021-02-20)
+
+
+### Features
+
+* public `onMessage` on `RtpSplitter` ([75c869c](https://github.com/homebridge/camera-utils/commit/75c869cec7cc84221d7c6395348a2a827e6dcc3f))
+
+
+### Bug Fixes
+
+* remove SIGINT listener ([1cd4e1f](https://github.com/homebridge/camera-utils/commit/1cd4e1f063642b71d7a34523c1c3b94c99a953c4))
+* update dependencies ([780b8da](https://github.com/homebridge/camera-utils/commit/780b8da4b4dfbebf786cbdba95c19587062623f0))
+
 ## [1.3.0](https://github.com/homebridge/camera-utils/compare/v1.2.0...v1.3.0) (2020-09-19)
 
 
