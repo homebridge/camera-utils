@@ -40,7 +40,7 @@
   "dependencies": {
     "execa": "^5.0.0",
     "ffmpeg-for-homebridge": "^0.0.9",
-    "get-port": "^5.1.1",
+    "pick-port": "^1.0.0",
     "rxjs": "^6.6.7",
     "systeminformation": "^5.6.10"
   },
