@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/homebridge/camera-utils/compare/v1.4.0...v2.0.0) (2021-04-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* `reservePorts` previously only reserved ports using tcp.  This was not a correct approach because ffmpeg uses udp to bind to the ports and tcp may be available on ports that are already bound for udp.  `reservePorts` will now use udp by default, but supports tcp if you pass `type: 'tcp'` in the options object.
+
+### Bug Fixes
+
+* reserve udp ports using pick-port ([3e6e1f4](https://github.com/homebridge/camera-utils/commit/3e6e1f4d1ca5238acb419a3bb268e381f6c640e1))
+* update dependencies ([3a99b37](https://github.com/homebridge/camera-utils/commit/3a99b37f70c4c8e0ec0022e25e0a1ec25c4276ac))
+
 ## [1.4.0](https://github.com/homebridge/camera-utils/compare/v1.2.0...v1.4.0) (2021-02-20)
 
 
