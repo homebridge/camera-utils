@@ -1,5 +1,5 @@
 import { createSocket, RemoteInfo } from 'dgram'
-import { bindToPort, releasePorts } from './ports'
+import { bindToPort } from './ports'
 import { fromEvent, merge, ReplaySubject } from 'rxjs'
 import { map, share, takeUntil } from 'rxjs/operators'
 import { getPayloadType, isRtpMessagePayloadType } from './rtp'
@@ -79,7 +79,6 @@ export class RtpSplitter {
 
     this.cleanedUp = true
     this.onClose.next()
-    this.portPromise.then((port) => releasePorts([port]))
   }
 
   private closed = false

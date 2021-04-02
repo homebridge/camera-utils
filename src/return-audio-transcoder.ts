@@ -1,7 +1,7 @@
 import { RtpSplitter } from './rtp-splitter'
 import { FfmpegProcess, FfmpegProcessOptions } from './ffmpeg-process'
 import { createCryptoLine } from './srtp'
-import { releasePorts, reservePorts } from './ports'
+import { reservePorts } from './ports'
 import { PrepareStreamRequest } from 'homebridge'
 import { getSsrc } from './rtp'
 
@@ -92,6 +92,5 @@ export class ReturnAudioTranscoder {
   stop() {
     this.ffmpegProcess.stop()
     this.returnRtpSplitter.close()
-    this.reservedPortsPromise.then((ports) => releasePorts(ports))
   }
 }
