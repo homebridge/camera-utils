@@ -78,7 +78,7 @@ export class RtpSplitter {
     }
 
     this.cleanedUp = true
-    this.onClose.next()
+    this.onClose.next(null)
   }
 
   private closed = false
