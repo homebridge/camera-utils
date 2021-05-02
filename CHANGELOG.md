@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/homebridge/camera-utils/compare/v2.0.0...v2.0.1) (2021-05-02)
+
+
+### Bug Fixes
+
+* update dependencies ([4c359a7](https://github.com/homebridge/camera-utils/commit/4c359a75d5ce4f0b9177c86e902610d6b8de4517))
+
 ## [2.0.0](https://github.com/homebridge/camera-utils/compare/v1.4.0...v2.0.0) (2021-04-02)
 
 
