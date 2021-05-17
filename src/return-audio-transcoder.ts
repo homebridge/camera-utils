@@ -44,10 +44,8 @@ export class ReturnAudioTranscoder {
         addressVersion,
         audio: { srtp_key: srtpKey, srtp_salt: srtpSalt },
       } = this.options.prepareStreamRequest,
-      {
-        ssrc: incomingAudioSsrc,
-        rtcpPort: incomingAudioRtcpPort,
-      } = this.options.incomingAudioOptions
+      { ssrc: incomingAudioSsrc, rtcpPort: incomingAudioRtcpPort } =
+        this.options.incomingAudioOptions
 
     this.ffmpegProcess.writeStdin(
       // This SDP was generated using ffmpeg, and describes the type of packets we expect to receive from HomeKit.
