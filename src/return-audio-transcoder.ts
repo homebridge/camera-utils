@@ -2,8 +2,18 @@ import { RtpSplitter } from './rtp-splitter'
 import { FfmpegProcess, FfmpegProcessOptions } from './ffmpeg-process'
 import { createCryptoLine } from './srtp'
 import { reservePorts } from './ports'
-import { PrepareStreamRequest } from 'homebridge'
 import { getSsrc } from './rtp'
+
+interface Source {
+  srtp_key: Buffer
+  srtp_salt: Buffer
+}
+
+interface PrepareStreamRequest {
+  targetAddress: string
+  addressVersion: 'ipv4' | 'ipv6'
+  audio: Source
+}
 
 export class ReturnAudioTranscoder {
   public readonly returnRtpSplitter = new RtpSplitter()
