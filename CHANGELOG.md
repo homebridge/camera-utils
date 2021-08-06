@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.4](https://github.com/homebridge/camera-utils/compare/v2.0.3...v2.0.4) (2021-08-06)
+
+
+### Bug Fixes
+
+* **RtpSplitter:** do not send on closed socket ([1bcc667](https://github.com/homebridge/camera-utils/commit/1bcc66774d67f1fcd2f3c97f38e5c69bfc22a7fb))
+* update dependencies ([ea54582](https://github.com/homebridge/camera-utils/commit/ea545827e08d4965290ffb18d5c245fcf041894a))
+
 ### [2.0.3](https://github.com/homebridge/camera-utils/compare/v2.0.2...v2.0.3) (2021-07-17)
 
 
