@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "jest && eslint '**/*.ts'",
+    "test-coverage": "jest --coverage",
     "watch:tests": "jest --watch",
     "watch:link": "npm link && tsc --watch --declaration",
     "lint": "eslint '**/*.ts' --fix",
