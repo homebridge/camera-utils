@@ -16,7 +16,7 @@ interface PrepareStreamRequest {
 }
 
 export class ReturnAudioTranscoder {
-  public readonly returnRtpSplitter = new RtpSplitter()
+  public readonly returnRtpSplitter
   public readonly ffmpegProcess = new FfmpegProcess({
     ffmpegArgs: [
       '-hide_banner',
@@ -44,8 +44,12 @@ export class ReturnAudioTranscoder {
         ssrc: number
         rtcpPort: number
       }
+      returnAudioSplitter?: RtpSplitter
     } & Omit<FfmpegProcessOptions, 'ffmpegArgs'>
-  ) {}
+  ) {
+    // allow return audio splitter to be passed in if you want to create one in the prepare stream phase, and create the transcoder in the stream request phase
+    this.returnRtpSplitter = options.returnAudioSplitter || new RtpSplitter()
+  }
 
   async start() {
     const [rtpPort, rtcpPort] = await this.reservedPortsPromise,
