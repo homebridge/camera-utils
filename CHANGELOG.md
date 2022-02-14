@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/homebridge/camera-utils/compare/v2.0.4...v2.1.0) (2022-02-14)
+
+
+### Features
+
+* **ReturnAudioTranscoder:** allow return rtp splitter to be passed in ([4f4cbc2](https://github.com/homebridge/camera-utils/commit/4f4cbc2ea99717f815c7bdd1d2d0de17bc338fa3))
+
 ### [2.0.4](https://github.com/homebridge/camera-utils/compare/v2.0.3...v2.0.4) (2021-08-06)
 
 
