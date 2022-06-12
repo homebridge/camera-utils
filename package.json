@@ -1,6 +1,6 @@
 {
   "name": "@homebridge/camera-utils",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Utilities to simplify homebridge camera plugin development",
   "main": "lib/index.js",
   "scripts": {
