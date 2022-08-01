@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/homebridge/camera-utils/compare/v2.1.2...v2.2.0) (2022-08-01)
+
+
+### Features
+
+* support opus codec for return audio transcoder ([d33ee25](https://github.com/homebridge/camera-utils/commit/d33ee257ea6a3185652250c12992ee2270e4f273))
+
+
+### Bug Fixes
+
+* update dependencies ([f212b6c](https://github.com/homebridge/camera-utils/commit/f212b6ce12ce13fb1de9a6ef9e20df28ac7b37e1))
+
 ### [2.1.2](https://github.com/homebridge/camera-utils/compare/v2.1.1...v2.1.2) (2022-06-12)
 
 
