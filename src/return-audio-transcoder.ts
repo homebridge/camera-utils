@@ -15,8 +15,28 @@ interface PrepareStreamRequest {
   audio: Source
 }
 
+interface StartStreamRequest {
+  audio: {
+    codec: 'OPUS' | 'AAC_eld' | string
+    channel: number
+    sample_rate: number
+    pt: number
+  }
+}
+
+const defaultStartStreamReqeuest: StartStreamRequest = {
+  audio: {
+    codec: 'AAC_eld',
+    channel: 1,
+    sample_rate: 16,
+    pt: 110,
+  },
+}
+
 export class ReturnAudioTranscoder {
   public readonly returnRtpSplitter
+  private startStreamRequest =
+    this.options.startStreamRequest || defaultStartStreamReqeuest
   public readonly ffmpegProcess = new FfmpegProcess({
     ffmpegArgs: [
       '-hide_banner',
@@ -25,7 +45,7 @@ export class ReturnAudioTranscoder {
       '-f',
       'sdp',
       '-acodec',
-      'libfdk_aac',
+      this.startStreamRequest.audio.codec === 'OPUS' ? 'libopus' : 'libfdk_aac',
       '-i',
       'pipe:',
       '-map',
@@ -45,6 +65,7 @@ export class ReturnAudioTranscoder {
         rtcpPort: number
       }
       returnAudioSplitter?: RtpSplitter
+      startStreamRequest?: StartStreamRequest
     } & Omit<FfmpegProcessOptions, 'ffmpegArgs'>
   ) {
     // allow return audio splitter to be passed in if you want to create one in the prepare stream phase, and create the transcoder in the stream request phase
@@ -59,7 +80,13 @@ export class ReturnAudioTranscoder {
         audio: { srtp_key: srtpKey, srtp_salt: srtpSalt },
       } = this.options.prepareStreamRequest,
       { ssrc: incomingAudioSsrc, rtcpPort: incomingAudioRtcpPort } =
-        this.options.incomingAudioOptions
+        this.options.incomingAudioOptions,
+      {
+        codec,
+        sample_rate,
+        channel,
+        pt: packetType,
+      } = this.startStreamRequest.audio
 
     this.ffmpegProcess.writeStdin(
       // This SDP was generated using ffmpeg, and describes the type of packets we expect to receive from HomeKit.
@@ -72,10 +99,17 @@ export class ReturnAudioTranscoder {
           .toUpperCase()} ${targetAddress}`,
         't=0 0',
         'a=tool:libavformat 58.38.100',
-        `m=audio ${rtpPort} RTP/AVP 110`,
+        `m=audio ${rtpPort} RTP/AVP ${packetType}`,
         'b=AS:24',
-        'a=rtpmap:110 MPEG4-GENERIC/16000/1',
-        'a=fmtp:110 profile-level-id=1;mode=AAC-hbr;sizelength=13;indexlength=3;indexdeltalength=3; config=F8F0212C00BC00',
+        ...(codec === 'OPUS'
+          ? [
+              `a=rtpmap:${packetType} opus/${sample_rate}000/${channel}`,
+              `a=fmtp:${packetType} minptime=10;useinbandfec=1`,
+            ]
+          : [
+              `a=rtpmap:${packetType} MPEG4-GENERIC/${sample_rate}000/${channel}`,
+              `a=fmtp:${packetType} profile-level-id=1;mode=AAC-hbr;sizelength=13;indexlength=3;indexdeltalength=3; config=F8F0212C00BC00`,
+            ]),
         createCryptoLine({
           srtpKey,
           srtpSalt,
