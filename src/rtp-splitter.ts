@@ -1,5 +1,5 @@
 import { createSocket, RemoteInfo } from 'dgram'
-import { bindToPort, releasePorts } from './ports'
+import { bindToPort } from './ports'
 import { fromEvent, merge, ReplaySubject } from 'rxjs'
 import { map, share, takeUntil } from 'rxjs/operators'
 import { getPayloadType, isRtpMessagePayloadType } from './rtp'
@@ -66,6 +66,12 @@ export class RtpSplitter {
 
   async send(message: Buffer, sendTo: SocketTarget) {
     await this.portPromise
+
+    if (this.closed) {
+      // If we send a message on a closed socket, it will throw an ERR_SOCKET_DGRAM_NOT_RUNNING error
+      return
+    }
+
     this.socket.send(message, sendTo.port, sendTo.address || '127.0.0.1')
   }
 
@@ -78,8 +84,7 @@ export class RtpSplitter {
     }
 
     this.cleanedUp = true
-    this.onClose.next()
-    this.portPromise.then((port) => releasePorts([port]))
+    this.onClose.next(null)
   }
 
   private closed = false

@@ -2,7 +2,81 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [1.4.0-beta.0](https://github.com/homebridge/camera-utils/compare/v1.2.0...v1.4.0-beta.0) (2021-02-20)
+## [2.2.0](https://github.com/homebridge/camera-utils/compare/v2.1.2...v2.2.0) (2022-08-01)
+
+
+### Features
+
+* support opus codec for return audio transcoder ([d33ee25](https://github.com/homebridge/camera-utils/commit/d33ee257ea6a3185652250c12992ee2270e4f273))
+
+
+### Bug Fixes
+
+* update dependencies ([f212b6c](https://github.com/homebridge/camera-utils/commit/f212b6ce12ce13fb1de9a6ef9e20df28ac7b37e1))
+
+### [2.1.2](https://github.com/homebridge/camera-utils/compare/v2.1.1...v2.1.2) (2022-06-12)
+
+
+### Bug Fixes
+
+* update dependencies ([3fb3ba8](https://github.com/homebridge/camera-utils/commit/3fb3ba818bc3292b7e528567339e0a2ce814e8e0))
+
+### [2.1.1](https://github.com/homebridge/camera-utils/compare/v2.1.0...v2.1.1) (2022-05-28)
+
+
+### Bug Fixes
+
+* update ffmpeg and other dependencies ([93788c3](https://github.com/homebridge/camera-utils/commit/93788c3b17c57b902f9baf35f9372803fdceb57d))
+
+## [2.1.0](https://github.com/homebridge/camera-utils/compare/v2.0.4...v2.1.0) (2022-02-14)
+
+
+### Features
+
+* **ReturnAudioTranscoder:** allow return rtp splitter to be passed in ([4f4cbc2](https://github.com/homebridge/camera-utils/commit/4f4cbc2ea99717f815c7bdd1d2d0de17bc338fa3))
+
+### [2.0.4](https://github.com/homebridge/camera-utils/compare/v2.0.3...v2.0.4) (2021-08-06)
+
+
+### Bug Fixes
+
+* **RtpSplitter:** do not send on closed socket ([1bcc667](https://github.com/homebridge/camera-utils/commit/1bcc66774d67f1fcd2f3c97f38e5c69bfc22a7fb))
+* update dependencies ([ea54582](https://github.com/homebridge/camera-utils/commit/ea545827e08d4965290ffb18d5c245fcf041894a))
+
+### [2.0.3](https://github.com/homebridge/camera-utils/compare/v2.0.2...v2.0.3) (2021-07-17)
+
+
+### Bug Fixes
+
+* update deps and remove homebridge dependency ([72d2dd4](https://github.com/homebridge/camera-utils/commit/72d2dd4bbe617f0fa6a5b050b9aa43d4431ac570))
+
+### [2.0.2](https://github.com/homebridge/camera-utils/compare/v2.0.1...v2.0.2) (2021-05-17)
+
+
+### Bug Fixes
+
+* update dependencies ([7003196](https://github.com/homebridge/camera-utils/commit/7003196960294fb94370527ea11d5509d7dc1b46))
+
+### [2.0.1](https://github.com/homebridge/camera-utils/compare/v2.0.0...v2.0.1) (2021-05-02)
+
+
+### Bug Fixes
+
+* update dependencies ([4c359a7](https://github.com/homebridge/camera-utils/commit/4c359a75d5ce4f0b9177c86e902610d6b8de4517))
+
+## [2.0.0](https://github.com/homebridge/camera-utils/compare/v1.4.0...v2.0.0) (2021-04-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* `reservePorts` previously only reserved ports using tcp.  This was not a correct approach because ffmpeg uses udp to bind to the ports and tcp may be available on ports that are already bound for udp.  `reservePorts` will now use udp by default, but supports tcp if you pass `type: 'tcp'` in the options object.
+
+### Bug Fixes
+
+* reserve udp ports using pick-port ([3e6e1f4](https://github.com/homebridge/camera-utils/commit/3e6e1f4d1ca5238acb419a3bb268e381f6c640e1))
+* update dependencies ([3a99b37](https://github.com/homebridge/camera-utils/commit/3a99b37f70c4c8e0ec0022e25e0a1ec25c4276ac))
+
+## [1.4.0](https://github.com/homebridge/camera-utils/compare/v1.2.0...v1.4.0) (2021-02-20)
 
 
 ### Features
