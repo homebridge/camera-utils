@@ -24,7 +24,7 @@ export interface FfmpegProcessOptions {
 export class FfmpegProcess {
   private ff = spawn(
     this.options.ffmpegPath || defaultFfmpegPath,
-    this.options.ffmpegArgs.map((x) => x.toString())
+    this.options.ffmpegArgs.map((x) => x.toString()),
   )
   private processSubscription = onGlobalProcessStopped.subscribe(() => {
     this.stop()

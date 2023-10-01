@@ -22,7 +22,7 @@ describe('Ffmpeg Utils', () => {
 
     it('should throw if given a bad path to ffmpeg', async () => {
       await expect(
-        doesFfmpegSupportCodec('opus', 'bad_ffmpeg_path')
+        doesFfmpegSupportCodec('opus', 'bad_ffmpeg_path'),
       ).rejects.toThrowError()
     })
   })

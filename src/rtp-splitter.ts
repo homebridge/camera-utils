@@ -17,7 +17,7 @@ export interface RtpMessageDescription {
 }
 
 export type RtpMessageHandler = (
-  description: RtpMessageDescription
+  description: RtpMessageDescription,
 ) => SocketTarget | null
 
 export class RtpSplitter {
@@ -26,7 +26,7 @@ export class RtpSplitter {
   private onClose = new ReplaySubject<any>()
   public readonly onMessage = fromEvent<[Buffer, RemoteInfo]>(
     this.socket,
-    'message'
+    'message',
   ).pipe(
     map(([message, info]) => {
       const payloadType = getPayloadType(message)
@@ -39,7 +39,7 @@ export class RtpSplitter {
       }
     }),
     takeUntil(this.onClose),
-    share()
+    share(),
   )
 
   constructor(messageHandler?: RtpMessageHandler) {
