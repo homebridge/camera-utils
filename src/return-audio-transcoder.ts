@@ -66,7 +66,7 @@ export class ReturnAudioTranscoder {
       }
       returnAudioSplitter?: RtpSplitter
       startStreamRequest?: StartStreamRequest
-    } & Omit<FfmpegProcessOptions, 'ffmpegArgs'>
+    } & Omit<FfmpegProcessOptions, 'ffmpegArgs'>,
   ) {
     // allow return audio splitter to be passed in if you want to create one in the prepare stream phase, and create the transcoder in the stream request phase
     this.returnRtpSplitter = options.returnAudioSplitter || new RtpSplitter()
@@ -114,7 +114,7 @@ export class ReturnAudioTranscoder {
           srtpKey,
           srtpSalt,
         }),
-      ].join('\n')
+      ].join('\n'),
     )
 
     this.returnRtpSplitter.addMessageHandler(({ isRtpMessage, message }) => {

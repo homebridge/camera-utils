@@ -5,7 +5,7 @@ export const defaultFfmpegPath: string = ffmpegForHomebridgePath || 'ffmpeg'
 
 export async function doesFfmpegSupportCodec(
   codec: string,
-  ffmpegPath = defaultFfmpegPath
+  ffmpegPath = defaultFfmpegPath,
 ) {
   const output = await execa(ffmpegPath, ['-codecs'])
   return output.stdout.includes(codec)
