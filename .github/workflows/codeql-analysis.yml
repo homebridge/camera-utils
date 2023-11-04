@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ latest, beta* ]
   schedule:
-    - cron: '44 16 * * 5'
+    - cron: '17 9 * * 2'
 
 jobs:
   analyze:
