@@ -1,6 +1,6 @@
 {
   "name": "@homebridge/camera-utils",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Utilities to simplify homebridge camera plugin development",
   "main": "lib/index.js",
   "scripts": {
@@ -23,6 +23,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/homebridge/camera-utils.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "homebridge",
