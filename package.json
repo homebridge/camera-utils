@@ -11,6 +11,7 @@
     "watch:link": "npm link && tsc --watch --declaration",
     "lint": "eslint '**/*.ts' --fix",
     "build": "rm -rf lib && tsc --declaration",
+    "prepublishOnly": "npm i --package-lock-only && npm run lint && npm run build",
     "push-with-tags": "git push --follow-tags && node ./build/github-releaser.js",
     "deploy": "standard-version && npm publish --access public && npm run push-with-tags",
     "deploy-beta": "standard-version --prerelease beta && npm publish --tag beta --access public && npm run push-with-tags"
