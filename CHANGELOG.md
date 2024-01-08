@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.5](https://github.com/homebridge/camera-utils/compare/v2.2.4...v2.2.5) (2024-01-08)
+
+
+### Bug Fixes
+
+* ffmpeg: Add optional stdout callback ([#584](https://github.com/homebridge/camera-utils/pull/584))
+* Add discord webhook to notify developers of new updates
+* update dependencies ([f4348f1](https://github.com/homebridge/camera-utils/commit/f4348f1eb1f9d6e1058e46b50ae51bb9f2c70736))
+
+### [2.2.4](https://github.com/homebridge/camera-utils/compare/v2.2.3...v2.2.4) (2023-11-05)
+
+
+### Bug Fixes
+
+* fix for lib folder missing ([#557](https://github.com/homebridge/camera-utils/issues/557))
+
+### [2.2.3](https://github.com/homebridge/camera-utils/compare/v2.2.2...v2.2.3) (2023-11-05)
+
+
+### Bug Fixes
+
+* potential fix for lib folder missing ([#556](https://github.com/homebridge/camera-utils/issues/556))
+
 ### [2.2.2](https://github.com/homebridge/camera-utils/compare/v2.2.1...v2.2.2) (2023-11-05)
 
 
