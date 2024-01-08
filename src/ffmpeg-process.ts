@@ -18,6 +18,7 @@ export interface FfmpegProcessOptions {
   }
   logLabel?: string
   exitCallback?: (code: number | null, signal: string | null) => unknown
+  stdoutCallback?: (data: any) => unknown
   startedCallback?: () => unknown
 }
 
@@ -38,6 +39,13 @@ export class FfmpegProcess {
       logError = logger?.error || noop,
       logInfo = logger?.info || noop,
       logPrefix = logLabel ? `${logLabel}: ` : ''
+
+    if (options.stdoutCallback) {
+      const { stdoutCallback } = options
+      this.ff.stdout.on('data', (data: any) => {
+        stdoutCallback(data)
+      })
+    }
 
     this.ff.stderr.on('data', (data: any) => {
       if (!this.started) {
