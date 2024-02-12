@@ -29,3 +29,11 @@ jobs:
       pre_id: 'beta'
     secrets:
       npm_auth_token: ${{ secrets.npm_token }}
+  
+  github-releases-to-discord:
+    needs: publish
+    uses: homebridge/.github/.github/workflows/discord-webhooks.yml@latest
+    with:
+      footer_title: "camera-utils"
+    secrets:
+      DISCORD_WEBHOOK_URL_BETA: ${{ secrets.DISCORD_WEBHOOK_URL_LATEST }}
