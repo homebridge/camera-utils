@@ -1,6 +1,6 @@
 import { Socket } from 'dgram'
 import { AddressInfo } from 'net'
-const pickPort = require('pick-port')
+import { pickPort } from 'pick-port'
 
 // Need to reserve ports in sequence because ffmpeg uses the next port up by default.  If it's taken, ffmpeg will error
 export async function reservePorts({
