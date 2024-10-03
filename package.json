@@ -42,13 +42,12 @@
   "bugs": {
     "url": "https://github.com/homebridge/camera-utils/issues"
   },
-  "homepage": "https://github.com/homebridge/camera-utils#readme",
   "dependencies": {
-    "execa": "^5.1.1",
-    "ffmpeg-for-homebridge": "^2.1.1",
-    "pick-port": "^2.0.1",
+    "execa": "^9.4.0",
+    "ffmpeg-for-homebridge": "^2.1.2",
+    "pick-port": "^2.1.0",
     "rxjs": "^7.8.1",
-    "systeminformation": "^5.21.24"
+    "systeminformation": "^5.23.5"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
