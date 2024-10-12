@@ -27,14 +27,14 @@
     "rtp",
     "ffmpeg"
   ],
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "check": "npm install && npm outdated",
     "test": "vitest",
     "test-coverage": "vitest run --coverage",
     "watch:link": "npm link && tsc --watch --declaration",
     "lint": "eslint '**/*.ts' --fix",
-    "build": "npm run clean && rm -rf lib && tsc --declaration",
+    "build": "npm run clean && tsc --declaration",
     "prepublishOnly": "npm i --package-lock-only && npm run lint && npm run build",
     "postpublish": "npm run clean",
     "clean": "rimraf dist && rimraf coverage",
@@ -56,6 +56,9 @@
     "rxjs": "^7.8.1",
     "systeminformation": "^5.23.5"
   },
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "@antfu/eslint-config": "^3.7.3",
     "@types/debug": "^4.1.12",
