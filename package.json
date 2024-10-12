@@ -1,7 +1,6 @@
 {
   "name": "@homebridge/camera-utils",
   "version": "3.0.0",
-  "type": "module",
   "description": "Utilities to simplify homebridge camera plugin development",
   "author": "dgreif",
   "license": "MIT",
