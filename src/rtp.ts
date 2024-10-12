@@ -1,5 +1,7 @@
+import type { Buffer } from 'node:buffer'
+
 export function getPayloadType(message: Buffer) {
-  return message.readUInt8(1) & 0x7f
+  return message.readUInt8(1) & 0x7F
 }
 
 export function isRtpMessagePayloadType(payloadType: number) {
@@ -8,8 +10,8 @@ export function isRtpMessagePayloadType(payloadType: number) {
 
 export function getSsrc(message: Buffer) {
   try {
-    const payloadType = getPayloadType(message),
-      isRtp = isRtpMessagePayloadType(payloadType)
+    const payloadType = getPayloadType(message)
+    const isRtp = isRtpMessagePayloadType(payloadType)
     return message.readUInt32BE(isRtp ? 8 : 4)
   } catch (_) {
     return null

@@ -1,4 +1,6 @@
-import { randomBytes } from 'crypto'
+import { Buffer } from 'node:buffer'
+
+import { randomBytes } from 'node:crypto'
 
 export interface SrtpOptions {
   srtpKey: Buffer

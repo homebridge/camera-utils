@@ -1,8 +1,10 @@
-import { createSocket, RemoteInfo } from 'dgram'
-import { bindToPort } from './ports'
+import type { Buffer } from 'node:buffer'
+import type { RemoteInfo } from 'node:dgram'
+import { createSocket } from 'node:dgram'
 import { fromEvent, merge, ReplaySubject } from 'rxjs'
 import { map, share, takeUntil } from 'rxjs/operators'
-import { getPayloadType, isRtpMessagePayloadType } from './rtp'
+import { bindToPort } from './ports.js'
+import { getPayloadType, isRtpMessagePayloadType } from './rtp.js'
 
 export interface SocketTarget {
   port: number

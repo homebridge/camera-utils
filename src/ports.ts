@@ -1,5 +1,5 @@
-import { Socket } from 'dgram'
-import { AddressInfo } from 'net'
+import type { Socket } from 'node:dgram'
+import type { AddressInfo } from 'node:net'
 import { pickPort } from 'pick-port'
 
 // Need to reserve ports in sequence because ffmpeg uses the next port up by default.  If it's taken, ffmpeg will error
@@ -17,27 +17,27 @@ export async function reservePorts({
   }
 
   const pickPortOptions = {
+    type,
+    reserveTimeout: 15, // 15 seconds is max setup time for HomeKit streams, so the port should be in use by then
+  }
+  const port = await pickPort(pickPortOptions)
+  const ports = [port]
+  const tryAgain = () => {
+    return reservePorts({
+      count,
       type,
-      reserveTimeout: 15, // 15 seconds is max setup time for HomeKit streams, so the port should be in use by then
-    },
-    port = await pickPort(pickPortOptions),
-    ports = [port],
-    tryAgain = () => {
-      return reservePorts({
-        count,
-        type,
-        attemptNumber: attemptNumber + 1,
-      })
-    }
+      attemptNumber: attemptNumber + 1,
+    })
+  }
 
   for (let i = 1; i < count; i++) {
     try {
-      const targetConsecutivePort = port + i,
-        openPort = await pickPort({
-          ...pickPortOptions,
-          minPort: targetConsecutivePort,
-          maxPort: targetConsecutivePort,
-        })
+      const targetConsecutivePort = port + i
+      const openPort = await pickPort({
+        ...pickPortOptions,
+        minPort: targetConsecutivePort,
+        maxPort: targetConsecutivePort,
+      })
 
       ports.push(openPort)
     } catch (_) {
