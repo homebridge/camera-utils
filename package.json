@@ -37,7 +37,9 @@
     "build": "npm run clean && rm -rf lib && tsc --declaration",
     "prepublishOnly": "npm i --package-lock-only && npm run lint && npm run build",
     "postpublish": "npm run clean",
-    "clean": "rimraf dist && rimraf coverage"
+    "clean": "rimraf dist && rimraf coverage",
+    "docs": "typedoc",
+    "lint-docs": "typedoc --emit none --treatWarningsAsErrors"
   },
   "standard-version": {
     "scripts": {
@@ -69,6 +71,7 @@
     "rimraf": "^6.0.1",
     "standard-version": "^9.5.0",
     "ts-node": "^10.9.2",
+    "typedoc": "^0.26.7",
     "typescript": "^5.6.2",
     "vite": "^5.4.8",
     "vitest": "^2.1.2"
