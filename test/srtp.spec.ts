@@ -1,14 +1,12 @@
-import {
-  decodeSrtpOptions,
-  generateSrtpOptions,
-  encodeSrtpOptions,
-} from '../src'
+import { Buffer } from 'node:buffer'
+import { describe, it, expect } from 'vitest';
+import { decodeSrtpOptions, encodeSrtpOptions, generateSrtpOptions } from '../src/index.js'
 
-describe('SRTP Utils', () => {
+describe('sRTP Utils', () => {
   describe('decodeSrtpOptions', () => {
     it('should decode an srtp crypto string', () => {
-      const input = 'NqC4Z0iABIbW2WLZHK4VGAdtjdsemf7qf9/odBa8',
-        decoded = decodeSrtpOptions(input)
+      const input = 'NqC4Z0iABIbW2WLZHK4VGAdtjdsemf7qf9/odBa8'
+      const decoded = decodeSrtpOptions(input)
 
       expect(decoded).toEqual({
         srtpKey: Buffer.from('36a0b86748800486d6d962d91cae1518', 'hex'),
@@ -19,8 +17,8 @@ describe('SRTP Utils', () => {
 
   describe('encodeSrtpOptions', () => {
     it('should decode an srtp crypto string', () => {
-      const input = 'DRhwQ59h1cODtqGEmpomv3XvRfkH/nIHV/y1RVff',
-        srtpOptions = decodeSrtpOptions(input)
+      const input = 'DRhwQ59h1cODtqGEmpomv3XvRfkH/nIHV/y1RVff'
+      const srtpOptions = decodeSrtpOptions(input)
 
       expect(encodeSrtpOptions(srtpOptions)).toEqual(input)
     })
@@ -35,9 +33,9 @@ describe('SRTP Utils', () => {
     })
 
     it('should be able to be encoded/decode from base64', () => {
-      const options = generateSrtpOptions(),
-        srtpValue = encodeSrtpOptions(options),
-        decodedOptions = decodeSrtpOptions(srtpValue)
+      const options = generateSrtpOptions()
+      const srtpValue = encodeSrtpOptions(options)
+      const decodedOptions = decodeSrtpOptions(srtpValue)
 
       expect(decodedOptions).toEqual(options)
     })
