@@ -1,7 +1,8 @@
-import execa from 'execa'
+import { execa } from 'execa'
 import ffmpegForHomebridgePath from 'ffmpeg-for-homebridge'
 
-export const defaultFfmpegPath: string = ffmpegForHomebridgePath || 'ffmpeg'
+export const defaultFfmpegPath: string =
+  (ffmpegForHomebridgePath as unknown as string) || 'ffmpeg'
 
 export async function doesFfmpegSupportCodec(
   codec: string,
