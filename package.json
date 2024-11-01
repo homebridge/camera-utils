@@ -45,7 +45,7 @@
   "homepage": "https://github.com/homebridge/camera-utils#readme",
   "dependencies": {
     "execa": "^9.4.0",
-    "ffmpeg-for-homebridge": "^2.1.6",
+    "ffmpeg-for-homebridge": "^2.1.7",
     "pick-port": "^2.1.0",
     "rxjs": "^7.8.1",
     "systeminformation": "^5.21.24"
