@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals'
 import { doesFfmpegSupportCodec, isFfmpegInstalled } from '../src'
 
 describe('Ffmpeg Utils', () => {
