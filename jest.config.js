@@ -1,11 +1,7 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  testMatch: ['<rootDir>/test/**/*.spec.ts'],
-  transform: {
-    '^.+\\.tsx?$': 'babel-jest',
-  },
-  transformIgnorePatterns: ['/node_modules/(?!execa).+\\.js$'],
+  testMatch: ['**/test/**/*.spec.ts'],
   coverageReporters: ['lcov'],
-  collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
+  collectCoverageFrom: ['src/**'],
 }
