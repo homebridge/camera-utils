@@ -1,6 +1,6 @@
 {
   "name": "@homebridge/camera-utils",
-  "version": "2.2.6",
+  "version": "2.2.7",
   "description": "Utilities to simplify homebridge camera plugin development",
   "main": "lib/index.js",
   "scripts": {
@@ -38,6 +38,9 @@
     "ffmpeg"
   ],
   "author": "dgreif",
+  "maintainers": [
+    "dgreif"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/homebridge/camera-utils/issues"
@@ -45,8 +48,8 @@
   "homepage": "https://github.com/homebridge/camera-utils#readme",
   "dependencies": {
     "execa": "^5.1.1",
-    "ffmpeg-for-homebridge": "^2.1.1",
-    "pick-port": "^2.0.1",
+    "ffmpeg-for-homebridge": "^2.1.7",
+    "pick-port": "^2.1.0",
     "rxjs": "^7.8.1",
     "systeminformation": "^5.21.24"
   },

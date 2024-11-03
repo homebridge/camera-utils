@@ -3,6 +3,8 @@ import {
   generateSrtpOptions,
   encodeSrtpOptions,
 } from '../src'
+import { Buffer } from 'buffer'
+import { describe, it, expect } from '@jest/globals'
 
 describe('SRTP Utils', () => {
   describe('decodeSrtpOptions', () => {

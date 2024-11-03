@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals'
 import { doesFfmpegSupportCodec, isFfmpegInstalled } from '../src'
 
 describe('Ffmpeg Utils', () => {
@@ -23,7 +24,7 @@ describe('Ffmpeg Utils', () => {
     it('should throw if given a bad path to ffmpeg', async () => {
       await expect(
         doesFfmpegSupportCodec('opus', 'bad_ffmpeg_path'),
-      ).rejects.toThrowError()
+      ).rejects.toThrow()
     })
   })
 })
