@@ -1,14 +1,8 @@
 {
   "name": "@homebridge/camera-utils",
-  "type": "module",
-  "version": "2.3.0",
+  "version": "3.0.0",
   "description": "Utilities to simplify homebridge camera plugin development",
   "author": "dgreif",
-  "maintainers": [
-    {
-      "name": "dgreif"
-    }
-  ],
   "license": "MIT",
   "homepage": "https://github.com/homebridge/camera-utils#readme",
   "repository": {
@@ -49,9 +43,12 @@
   "publishConfig": {
     "access": "public"
   },
+  "maintainers": [
+    "dgreif"
+  ],
   "dependencies": {
     "execa": "^9.4.0",
-    "ffmpeg-for-homebridge": "^2.1.2",
+    "ffmpeg-for-homebridge": "^2.1.7",
     "pick-port": "^2.1.0",
     "rxjs": "^7.8.1",
     "systeminformation": "^5.23.5"
