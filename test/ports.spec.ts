@@ -1,5 +1,5 @@
 import { createSocket } from 'node:dgram'
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest'
 import { reservePorts } from '../src/index.js'
 
 function expectPortToBeOpen(port: number): Promise<void> {

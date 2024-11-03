@@ -1,5 +1,5 @@
 import { Buffer } from 'node:buffer'
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest'
 import { decodeSrtpOptions, encodeSrtpOptions, generateSrtpOptions } from '../src/index.js'
 
 describe('sRTP Utils', () => {
