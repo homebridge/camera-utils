@@ -38,6 +38,9 @@
     "ffmpeg"
   ],
   "author": "dgreif",
+  "maintainers": [
+    "dgreif"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/homebridge/camera-utils/issues"
