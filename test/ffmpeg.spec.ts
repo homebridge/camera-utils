@@ -1,7 +1,8 @@
-import { describe, it, expect } from '@jest/globals'
-import { doesFfmpegSupportCodec, isFfmpegInstalled } from '../src'
+// test/ffmpeg.spec.ts
+import { describe, expect, it } from 'vitest'
+import { doesFfmpegSupportCodec, isFfmpegInstalled } from '../src/index.js'
 
-describe('Ffmpeg Utils', () => {
+describe('ffmpeg Utils', () => {
   describe('isFfmpegInstalled', () => {
     it('should return true using default path from ffmpeg-for-homebridge', async () => {
       expect(await isFfmpegInstalled()).toEqual(true)
@@ -17,14 +18,14 @@ describe('Ffmpeg Utils', () => {
       expect(await doesFfmpegSupportCodec('opus')).toEqual(true)
     })
 
-    it('should return false for a supported codec', async () => {
+    it('should return false for an unsupported codec', async () => {
       expect(await doesFfmpegSupportCodec('unknown_codec')).toEqual(false)
     })
 
     it('should throw if given a bad path to ffmpeg', async () => {
       await expect(
         doesFfmpegSupportCodec('opus', 'bad_ffmpeg_path'),
-      ).rejects.toThrow()
+      ).rejects.toThrowError('FFmpeg not found at path: bad_ffmpeg_path')
     })
   })
 })

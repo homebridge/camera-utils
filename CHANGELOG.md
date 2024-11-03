@@ -2,7 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [2.2.7](https://github.com/homebridge/camera-utils/compare/v2.2.5...v2.2.6) (2024-11-03)
+### [3.0.0](https://github.com/homebridge/camera-utils/compare/v2.2.7...v3.0.0) (2024-11-03)
+
+### Major Changes
+
+* change to a esm module
+
+### Other Changes
+
+* update dependencies
+
+### [2.2.7](https://github.com/homebridge/camera-utils/compare/v2.2.6...v2.2.7) (2024-11-03)
 
 ### Other Changes
 

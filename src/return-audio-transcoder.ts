@@ -1,8 +1,10 @@
-import { RtpSplitter } from './rtp-splitter'
-import { FfmpegProcess, FfmpegProcessOptions } from './ffmpeg-process'
-import { createCryptoLine } from './srtp'
-import { reservePorts } from './ports'
-import { getSsrc } from './rtp'
+import type { Buffer } from 'node:buffer'
+import type { FfmpegProcessOptions } from './ffmpeg-process.js'
+import { FfmpegProcess } from './ffmpeg-process.js'
+import { reservePorts } from './ports.js'
+import { getSsrc } from './rtp.js'
+import { RtpSplitter } from './rtp-splitter.js'
+import { createCryptoLine } from './srtp.js'
 
 interface Source {
   srtp_key: Buffer
@@ -35,26 +37,9 @@ const defaultStartStreamReqeuest: StartStreamRequest = {
 
 export class ReturnAudioTranscoder {
   public readonly returnRtpSplitter
-  private startStreamRequest =
-    this.options.startStreamRequest || defaultStartStreamReqeuest
-  public readonly ffmpegProcess = new FfmpegProcess({
-    ffmpegArgs: [
-      '-hide_banner',
-      '-protocol_whitelist',
-      'pipe,udp,rtp,file,crypto',
-      '-f',
-      'sdp',
-      '-acodec',
-      this.startStreamRequest.audio.codec === 'OPUS' ? 'libopus' : 'libfdk_aac',
-      '-i',
-      'pipe:',
-      '-map',
-      '0:0',
-      ...this.options.outputArgs,
-    ],
-    ...this.options,
-  })
-  public readonly reservedPortsPromise = reservePorts({ count: 2 })
+  private startStreamRequest
+
+  public readonly ffmpegProcess
 
   constructor(
     private options: {
@@ -68,25 +53,49 @@ export class ReturnAudioTranscoder {
       startStreamRequest?: StartStreamRequest
     } & Omit<FfmpegProcessOptions, 'ffmpegArgs'>,
   ) {
+    this.startStreamRequest = this.options.startStreamRequest || defaultStartStreamReqeuest
+
+    this.ffmpegProcess = new FfmpegProcess({
+      ffmpegArgs: [
+        '-hide_banner',
+        '-protocol_whitelist',
+        'pipe,udp,rtp,file,crypto',
+        '-f',
+        'sdp',
+        '-acodec',
+        this.startStreamRequest.audio.codec === 'OPUS' ? 'libopus' : 'libfdk_aac',
+        '-i',
+        'pipe:',
+        '-map',
+        '0:0',
+        ...this.options.outputArgs,
+      ],
+      ...this.options,
+    })
+
     // allow return audio splitter to be passed in if you want to create one in the prepare stream phase, and create the transcoder in the stream request phase
     this.returnRtpSplitter = options.returnAudioSplitter || new RtpSplitter()
   }
 
+  public readonly reservedPortsPromise = reservePorts({ count: 2 })
+
+  // Removed duplicate constructor
+
   async start() {
-    const [rtpPort, rtcpPort] = await this.reservedPortsPromise,
-      {
-        targetAddress,
-        addressVersion,
-        audio: { srtp_key: srtpKey, srtp_salt: srtpSalt },
-      } = this.options.prepareStreamRequest,
-      { ssrc: incomingAudioSsrc, rtcpPort: incomingAudioRtcpPort } =
-        this.options.incomingAudioOptions,
-      {
-        codec,
-        sample_rate,
-        channel,
-        pt: packetType,
-      } = this.startStreamRequest.audio
+    const [rtpPort, rtcpPort] = await this.reservedPortsPromise
+    const {
+      targetAddress,
+      addressVersion,
+      audio: { srtp_key: srtpKey, srtp_salt: srtpSalt },
+    } = this.options.prepareStreamRequest
+    const { ssrc: incomingAudioSsrc, rtcpPort: incomingAudioRtcpPort }
+      = this.options.incomingAudioOptions
+    const {
+      codec,
+      sample_rate,
+      channel,
+      pt: packetType,
+    } = this.startStreamRequest.audio
 
     this.ffmpegProcess.writeStdin(
       // This SDP was generated using ffmpeg, and describes the type of packets we expect to receive from HomeKit.

@@ -1,37 +1,36 @@
-import { describe, it, expect } from '@jest/globals'
-import { reservePorts } from '../src'
-// import { createSocket } from 'dgram';
+import { createSocket } from 'node:dgram'
+import { describe, expect, it } from 'vitest'
+import { reservePorts } from '../src/index.js'
 
-// function expectPortToBeOpen(port: number) {
-//   return new Promise(async (resolve, reject) => {
-//     const socket = createSocket('udp4');
-//     socket.once('error', reject);
+function expectPortToBeOpen(port: number): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const socket = createSocket('udp4')
+    socket.once('error', reject)
 
-//     await socket.bind(port, () => {
-//       socket.close();
-//       resolve();
-//     });
-//     // TODO: reject on error
-//   });
-// }
+    socket.bind(port, () => {
+      socket.close()
+      resolve()
+    })
+  })
+}
 
-describe('Port Utils', () => {
+describe('port Utils', () => {
   it('should be able to reserve a single port', async () => {
     const ports = await reservePorts()
 
     expect(ports).toHaveLength(1)
-    // expectPortToBeOpen(ports[0]);
+    await expectPortToBeOpen(ports[0])
   })
 
   it('should be able to reserve multiple ports', async () => {
     const ports = await reservePorts({ count: 3 })
 
     expect(ports).toHaveLength(3)
-    // expectPortToBeOpen(ports[0]);
+    await expectPortToBeOpen(ports[0])
 
     for (let i = 1; i < ports.length; i++) {
       expect(ports[i]).toEqual(ports[i - 1] + 1)
-      // expectPortToBeOpen(ports[i]);
+      await expectPortToBeOpen(ports[i])
     }
   })
 })
